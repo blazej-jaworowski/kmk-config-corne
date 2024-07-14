@@ -8,6 +8,7 @@ def generate_mapping():
     SLSH_RALT = KC.HT(KC.SLSH, KC.RALT)
     ENT_MO1 = KC.HT(KC.ENT, KC.MO(1))
     BSPC_MO2 = KC.HT(KC.BSPC, KC.MO(2), repeat=HoldTapRepeat.TAP)
+    BSPC_MO2.tap_time = 150
     ESC_LCTL = KC.HT(KC.ESC, KC.LCTL)
     ARROW_MO3 = KC.HT(KC.MACRO('->'), KC.MO(3))
 
