@@ -11,7 +11,6 @@ from kmk.scanners import DiodeOrientation
 import digitalio
 import board
 
-
 LEFT_PINS = (
     # row pins
     (board.D6, board.D7, board.D8, board.D9),
@@ -52,7 +51,8 @@ class KMKKeyboard(_KMKKeyboard):
             RIGHT_PINS if vbus.value is False else LEFT_PINS
         self.diode_orientation = DiodeOrientation.COL2ROW
 
-        import keymap
+        HoldTap.tap_time = 100
 
+        import keymap
         self.keymap = keymap.generate_mapping()
         self.debug_enabled = True

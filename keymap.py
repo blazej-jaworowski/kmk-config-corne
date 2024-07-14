@@ -1,51 +1,61 @@
 from kmk.keys import KC
-from kmk.modules.macros import Macros, Press, Release, Tap
-from kmk.modules.combos import Chord, Sequence
+from kmk.modules.holdtap import HoldTapRepeat
 
-import customkeys
-
-keymap = [
-    [
-        KC.Q, KC.W, KC.E, KC.R, KC.T,        KC.Y, KC.U, KC.I, KC.O, KC.P,
-        KC.A, KC.S, KC.D, KC.F, KC.G,        KC.H, KC.J, KC.K, KC.L, KC.SCLN,
-        KC.Z, KC.X, KC.C, KC.V, KC.B,        KC.N, KC.M, KC.COMM, KC.DOT, KC.HT(KC.SLSH, KC.RALT),
-            KC.LGUI, KC.SPC, KC.LSFT,        KC.HT(KC.ENT, KC.MO(1)), KC.HT(KC.BSPC, KC.MO(2)), KC.HT(KC.ESC, KC.LCTL),
-    ],
-    [
-        KC.PERCENT, KC.CIRCUMFLEX, KC.AMPERSAND, KC.ASTERISK, KC.TRNS,        KC.TRNS, KC.UNDERSCORE, KC.LCBR, KC.RCBR, KC.TRNS,
-        KC.EXLM, KC.AT, KC.HASH, KC.DOLLAR, KC.HT(KC.MACRO('->'), KC.MO(4)),  KC.EQL, KC.MINS, KC.LEFT_PAREN, KC.RIGHT_PAREN, KC.GRV,
-        KC.QUOT, KC.DQT, KC.PIPE, KC.BSLS, KC.TRNS,                           KC.TRNS, KC.PLUS, KC.LBRC, KC.RBRC, KC.TILDE,
-            KC.TRNS, KC.TAB, KC.TRNS,                                         KC.TRNS, KC.TRNS, KC.TRNS,
-    ],
-    [
-        KC.TRNS, KC.N1, KC.N2, KC.N3, KC.TRNS,          KC.TO(3), KC.TRNS, KC.BRID, KC.BRIU, KC.TRNS,
-        KC.N0, KC.N4, KC.N5, KC.N6, KC.TRNS,            KC.MPLY, KC.LEFT, KC.DOWN, KC.UP, KC.RIGHT,
-        KC.TRNS, KC.N7, KC.N8, KC.N9, KC.TRNS,          KC.MUTE, KC.MPRV, KC.VOLD, KC.VOLU, KC.MNXT,
-        KC.TRNS, KC.TRNS, KC.TRNS,                      KC.TRNS, KC.TRNS, KC.TRNS,
-    ],
-    [
-        KC.F1, KC.F2, KC.F3, KC.F4, KC.TRNS,            KC.TRNS, KC.INSERT, KC.HOME, KC.PGUP, KC.PSCREEN,
-        KC.F5, KC.F6, KC.F7, KC.F8, KC.TRNS,            KC.TRNS, KC.DEL, KC.END, KC.PGDOWN, KC.PAUSE,
-        KC.F9, KC.F10, KC.F11, KC.F12, KC.TRNS,         KC.TRNS, customkeys.TOGGLEDRIVE, customkeys.SAFEMODE, customkeys.DFUMODE, KC.TRNS,
-        KC.LCTL, KC.LALT, KC.LSFT,                      KC.LGUI, KC.RALT, KC.TO(0)
-    ],
-]
-
-matrix_map = [
-    -1,  0,  1,  2,  3,  4,    -1,  9,  8,  7,  6,  5,
-    -1, 10, 11, 12, 13, 14,    -1, 19, 18, 17, 16, 15,
-    -1, 20, 21, 22, 23, 24,    -1, 29, 28, 27, 26, 25,
-    -1, -1, -1, 30, 31, 32,    -1, -1, -1, 35, 34, 33,
-]
+import custom_keys
 
 
 def generate_mapping():
+    SLSH_RALT = KC.HT(KC.SLSH, KC.RALT)
+    ENT_MO1 = KC.HT(KC.ENT, KC.MO(1))
+    BSPC_MO2 = KC.HT(KC.BSPC, KC.MO(2), repeat=HoldTapRepeat.TAP)
+    ESC_LCTL = KC.HT(KC.ESC, KC.LCTL)
+    ARROW_MO3 = KC.HT(KC.MACRO('->'), KC.MO(3))
+
+    keymap = [
+        [
+            'Q',    'W',    'E',    'R',    'T',            'Y',      'U',      'I',    'O',    'P',
+            'A',    'S',    'D',    'F',    'G',            'H',      'J',      'K',    'L',    ';',
+            'Z',    'X',    'C',    'V',    'B',            'N',      'M',      ',',    '.',    SLSH_RALT,
+                            'LGUI', ' ',    'LSFT',         ENT_MO1,  BSPC_MO2, ESC_LCTL,
+        ],
+        [
+            '%',    '^',    '&',    '*',    'TRNS',         'TRNS',   '_',      '{',    '}',    'TRNS',
+            '!',    '@',    '#',    '$',    ARROW_MO3,      '=',      '-',      '(',    ')',    '`',
+            '\'',   '"',    '|',    '\\',   'TRNS',         'TRNS',   '+',      '[',    ']',    '~',
+                            'TRNS', 'TAB',  'TRNS',         'TRNS',   'TRNS',   'TRNS',
+        ],
+        [
+            'TRNS', '1',    '2',    '3',    'TRNS',         KC.TO(3), 'TRNS',   'BRID', 'BRIU', 'TRNS',
+            '0',    '4',    '5',    '6',    'TRNS',         'MPLY',   'LEFT',   'DOWN', 'UP',   'RIGHT',
+            'TRNS', '7',    '8',    '9',    'TRNS',         'MUTE',   'MPRV',   'VOLD', 'VOLU', 'MNXT',
+                            'TRNS', 'TRNS', 'TRNS',         'TRNS',   'TRNS',   'TRNS',
+        ],
+        [
+            'F1',   'F2',   'F3',   'F4',   'TRNS',         'TRNS',   'INSERT', 'HOME', 'PGUP', 'PSCREEN',
+            'F5',   'F6',   'F7',   'F8',   'TRNS',         'TRNS',   'DEL',    'END',  'PGDOWN', 'PAUSE',
+            'F9',   'F10',  'F11',  'F12',  'TRNS',         'TRNS',   custom_keys.TOGGLEDRIVE,
+                                                                      custom_keys.SAFEMODE,
+                                                                      custom_keys.DFUMODE,
+                                                                                          'TRNS',
+            'LCTL', 'LALT', 'LSFT',                         'LGUI',   'RALT',   KC.TO(0)
+        ],
+    ]
+
+    matrix_map = [
+        -1,  0,  1,  2,  3,  4,    -1,  9,  8,  7,  6,  5,
+        -1, 10, 11, 12, 13, 14,    -1, 19, 18, 17, 16, 15,
+        -1, 20, 21, 22, 23, 24,    -1, 29, 28, 27, 26, 25,
+        -1, -1, -1, 30, 31, 32,    -1, -1, -1, 35, 34, 33,
+    ]
+
     mapping = []
 
     for layer in keymap:
         mapping_layer = []
         for index in matrix_map:
-            key = KC.NO if index != -1 else layer[index]
+            key = KC.NO if index == -1 else layer[index]
+            if isinstance(key, str):
+                key = KC[key]
             mapping_layer.append(key)
         mapping.append(mapping_layer)
 
