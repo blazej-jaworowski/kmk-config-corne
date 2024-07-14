@@ -1,10 +1,14 @@
 from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
+
 from kmk.extensions.media_keys import MediaKeys
+from kmk.extensions.stringy_keymaps import StringyKeymaps
 
 from kmk.modules.layers import Layers
 from kmk.modules.holdtap import HoldTap
 from kmk.modules.mouse_keys import MouseKeys
 from kmk.modules.macros import Macros
+from kmk.modules.capsword import CapsWord
+from kmk.modules.tapdance import TapDance
 from kmk.modules.split import Split, SplitSide
 from kmk.scanners import DiodeOrientation
 
@@ -30,11 +34,14 @@ class KMKKeyboard(_KMKKeyboard):
 
     def __init__(self):
         self.extensions.append(MediaKeys())
+        self.extensions.append(StringyKeymaps())
 
         self.modules.append(Layers())
         self.modules.append(HoldTap())
         self.modules.append(MouseKeys())
         self.modules.append(Macros())
+        self.modules.append(CapsWord())
+        self.modules.append(TapDance())
 
         vbus = digitalio.DigitalInOut(board.D29)
         vbus.direction = digitalio.Direction.INPUT

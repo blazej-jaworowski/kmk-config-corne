@@ -22,7 +22,7 @@ def generate_mapping():
             '%',    '^',    '&',    '*',    'TRNS',         'TRNS',   '_',      '{',    '}',    'TRNS',
             '!',    '@',    '#',    '$',    ARROW_MO3,      '=',      '-',      '(',    ')',    '`',
             '\'',   '"',    '|',    '\\',   'TRNS',         'TRNS',   '+',      '[',    ']',    '~',
-                            'TRNS', 'TAB',  'TRNS',         'TRNS',   'TRNS',   'TRNS',
+                            'TRNS', 'TAB',  'CW',           'TRNS',   'TRNS',   'TRNS',
         ],
         [
             'TRNS', '1',    '2',    '3',    'TRNS',         KC.TO(3), 'TRNS',   'BRID', 'BRIU', 'TRNS',
@@ -54,8 +54,6 @@ def generate_mapping():
         mapping_layer = []
         for index in matrix_map:
             key = KC.NO if index == -1 else layer[index]
-            if isinstance(key, str):
-                key = KC[key]
             mapping_layer.append(key)
         mapping.append(mapping_layer)
 
