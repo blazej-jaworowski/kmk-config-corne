@@ -8,15 +8,21 @@ def generate_mapping():
     SLSH_RALT = KC.HT(KC.SLSH, KC.RALT)
     ENT_MO1 = KC.HT(KC.ENT, KC.MO(1))
     BSPC_MO2 = KC.HT(KC.BSPC, KC.MO(2), repeat=HoldTapRepeat.TAP)
+    BSPC_MO2.tap_time = 150
     ESC_LCTL = KC.HT(KC.ESC, KC.LCTL)
     ARROW_MO3 = KC.HT(KC.MACRO('->'), KC.MO(3))
+    TG5_LSFT = KC.HT(KC.TG(5), KC.LSFT)
+    A_MMB = KC.HT(KC.A, KC.MB_MMB, prefer_hold=False)
+    D_RMB = KC.HT(KC.D, KC.MB_RMB, prefer_hold=False)
+    F_LMB = KC.HT(KC.F, KC.MB_LMB, prefer_hold=False)
+    TRNS_LCTL = KC.HT(KC.TRNS, KC.LCTL)
 
     keymap = [
         [
             'Q',    'W',    'E',    'R',    'T',            'Y',      'U',      'I',    'O',    'P',
-            'A',    'S',    'D',    'F',    'G',            'H',      'J',      'K',    'L',    ';',
+            A_MMB,    'S',    D_RMB,    F_LMB,    'G',            'H',      'J',      'K',    'L',    ';',
             'Z',    'X',    'C',    'V',    'B',            'N',      'M',      ',',    '.',    SLSH_RALT,
-                            'LGUI', ' ',    'LSFT',         ENT_MO1,  BSPC_MO2, ESC_LCTL,
+                            'LGUI', ' ',    TG5_LSFT,         ENT_MO1,  BSPC_MO2, ESC_LCTL,
         ],
         [
             '%',    '^',    '&',    '*',    'TRNS',         'TRNS',   '_',      '{',    '}',    'TRNS',
@@ -25,10 +31,10 @@ def generate_mapping():
                             'TRNS', 'TAB',  'CW',           'TRNS',   'TRNS',   'TRNS',
         ],
         [
-            'TRNS', '1',    '2',    '3',    'TRNS',         KC.TO(3), 'TRNS',   'BRID', 'BRIU', 'TRNS',
+            'TRNS', '1',    '2',    '3',    'TRNS',         KC.TG(3), 'TRNS',   'BRID', 'BRIU', 'TRNS',
             '0',    '4',    '5',    '6',    'TRNS',         'MPLY',   'LEFT',   'DOWN', 'UP',   'RIGHT',
             'TRNS', '7',    '8',    '9',    'TRNS',         'MUTE',   'MPRV',   'VOLD', 'VOLU', 'MNXT',
-                            'TRNS', 'TRNS', 'TRNS',         'TRNS',   'TRNS',   'TRNS',
+                            'TRNS', 'TRNS', KC.MO(4),         'TRNS',   'TRNS',   'TRNS',
         ],
         [
             'F1',   'F2',   'F3',   'F4',   'TRNS',         'TRNS',   'INSERT', 'HOME', 'PGUP', 'PSCREEN',
@@ -37,7 +43,19 @@ def generate_mapping():
                                                                       custom_keys.SAFEMODE,
                                                                       custom_keys.DFUMODE,
                                                                                           'TRNS',
-            'LCTL', 'LALT', 'LSFT',                         'LGUI',   'RALT',   KC.TO(0)
+            'LCTL', 'LALT', 'LSFT',                         'LGUI',   'RALT',   KC.TG(3),
+        ],
+        [
+            'TRNS',   'TRNS',   'TRNS',   'TRNS',   'TRNS',         'TRNS',   'TRNS', 'TRNS', 'TRNS', 'TRNS',
+            'TRNS',   'TRNS',   'TRNS',   'TRNS',   'TRNS',         'TRNS',   'HOME',    'PGUP',  'PGDOWN', 'END',
+            'TRNS',   'TRNS',  'TRNS',  'TRNS',  'TRNS',         'TRNS',   'TRNS',    'TRNS',    'TRNS',    'TRNS',
+            'TRNS', 'TRNS', 'TRNS',                         'TRNS',   'TRNS',   'TRNS',
+        ],
+        [
+            'TRNS',   'TRNS',   'TRNS',   'TRNS',   'TRNS',         'TRNS',   'TRNS', 'TRNS', 'TRNS', 'TRNS',
+            'MB_MMB',   'NLCK',  'MB_RMB',  'MB_LMB',   'TRNS',         'TRNS',   'TRNS',    'TRNS',  'TRNS', 'TRNS',
+            'TRNS',   'TRNS',  'TRNS',  'TRNS',  'TRNS',         'TRNS',   'TRNS',    'TRNS',    'TRNS',    'TRNS',
+            'TRNS', TRNS_LCTL, KC.TG(5),                         'TRNS',   'TRNS',   KC.TG(5),
         ],
     ]
 
