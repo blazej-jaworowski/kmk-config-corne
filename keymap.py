@@ -1,28 +1,36 @@
+# flake8: noqa
+# pylint: disable=line-too-long
+
 from kmk.keys import KC
 from kmk.modules.holdtap import HoldTapRepeat
+from kmk.modules.macros import Tap
 
 import custom_keys
 
+SLSH_RALT = KC.HT(KC.SLSH, KC.RALT)
+ENT_MO1 = KC.HT(KC.ENT, KC.MO(1))
+BSPC_MO2 = KC.HT(KC.BSPC, KC.MO(2), repeat=HoldTapRepeat.TAP)
+BSPC_MO2.tap_time = 150
+ESC_LCTL = KC.HT(KC.ESC, KC.LCTL)
+ARROW_MO3 = KC.HT(KC.MACRO('->'), KC.MO(3))
+TG5_LSFT = KC.HT(KC.TG(5), KC.LSFT)
+A_MMB = KC.HT(KC.A, KC.MB_MMB, prefer_hold=False)
+D_RMB = KC.HT(KC.D, KC.MB_RMB, prefer_hold=False)
+F_LMB = KC.HT(KC.F, KC.MB_LMB, prefer_hold=False)
+TRNS_LCTL = KC.HT(KC.TRNS, KC.LCTL)
+NUMLOCK_HOLD = KC.MACRO(
+    on_press=[ Tap(KC.NUMLOCK) ],
+    on_release=[ Tap(KC.NUMLOCK) ],
+)
 
 def generate_mapping():
-    SLSH_RALT = KC.HT(KC.SLSH, KC.RALT)
-    ENT_MO1 = KC.HT(KC.ENT, KC.MO(1))
-    BSPC_MO2 = KC.HT(KC.BSPC, KC.MO(2), repeat=HoldTapRepeat.TAP)
-    BSPC_MO2.tap_time = 150
-    ESC_LCTL = KC.HT(KC.ESC, KC.LCTL)
-    ARROW_MO3 = KC.HT(KC.MACRO('->'), KC.MO(3))
-    TG5_LSFT = KC.HT(KC.TG(5), KC.LSFT)
-    A_MMB = KC.HT(KC.A, KC.MB_MMB, prefer_hold=False)
-    D_RMB = KC.HT(KC.D, KC.MB_RMB, prefer_hold=False)
-    F_LMB = KC.HT(KC.F, KC.MB_LMB, prefer_hold=False)
-    TRNS_LCTL = KC.HT(KC.TRNS, KC.LCTL)
 
     keymap = [
         [
             'Q',    'W',    'E',    'R',    'T',            'Y',      'U',      'I',    'O',    'P',
-            A_MMB,    'S',    D_RMB,    F_LMB,    'G',            'H',      'J',      'K',    'L',    ';',
+            A_MMB,  's',    D_RMB,    F_LMB,    'G',            'H',      'J',      'K',    'L',    ';',
             'Z',    'X',    'C',    'V',    'B',            'N',      'M',      ',',    '.',    SLSH_RALT,
-                            'LGUI', ' ',    TG5_LSFT,         ENT_MO1,  BSPC_MO2, ESC_LCTL,
+                            'LGUI', 'SPC',    TG5_LSFT,         ENT_MO1,  BSPC_MO2, ESC_LCTL,
         ],
         [
             '%',    '^',    '&',    '*',    'TRNS',         'TRNS',   '_',      '{',    '}',    'TRNS',
@@ -53,7 +61,7 @@ def generate_mapping():
         ],
         [
             'TRNS',   'TRNS',   'TRNS',   'TRNS',   'TRNS',         'TRNS',   'TRNS', 'TRNS', 'TRNS', 'TRNS',
-            'MB_MMB',   'NLCK',  'MB_RMB',  'MB_LMB',   'TRNS',         'TRNS',   'TRNS',    'TRNS',  'TRNS', 'TRNS',
+            'MB_MMB',   NUMLOCK_HOLD,  'MB_RMB',  'MB_LMB',   'TRNS',         'TRNS',   'TRNS',    'TRNS',  'TRNS', 'TRNS',
             'TRNS',   'TRNS',  'TRNS',  'TRNS',  'TRNS',         'TRNS',   'TRNS',    'TRNS',    'TRNS',    'TRNS',
             'TRNS', TRNS_LCTL, KC.TG(5),                         'TRNS',   'TRNS',   KC.TG(5),
         ],
