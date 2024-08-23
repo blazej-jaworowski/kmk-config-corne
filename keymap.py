@@ -14,9 +14,7 @@ BSPC_MO2.tap_time = 150
 ESC_LCTL = KC.HT(KC.ESC, KC.LCTL)
 ARROW_MO3 = KC.HT(KC.MACRO('->'), KC.MO(3))
 TG5_LSFT = KC.HT(KC.TG(5), KC.LSFT)
-A_MMB = KC.HT(KC.A, KC.MB_MMB, prefer_hold=False)
-D_RMB = KC.HT(KC.D, KC.MB_RMB, prefer_hold=False)
-F_LMB = KC.HT(KC.F, KC.MB_LMB, prefer_hold=False)
+TG5_LSFT.tap_time = 150
 TRNS_LCTL = KC.HT(KC.TRNS, KC.LCTL)
 NUMLOCK_HOLD = KC.MACRO(
     on_press=[ Tap(KC.NUMLOCK) ],
@@ -28,7 +26,7 @@ def generate_mapping():
     keymap = [
         [
             'Q',    'W',    'E',    'R',    'T',            'Y',      'U',      'I',    'O',    'P',
-            A_MMB,  's',    D_RMB,    F_LMB,    'G',            'H',      'J',      'K',    'L',    ';',
+            'A',    'S',    'D',    'F',    'G',            'H',      'J',      'K',    'L',    ';',
             'Z',    'X',    'C',    'V',    'B',            'N',      'M',      ',',    '.',    SLSH_RALT,
                             'LGUI', 'SPC',    TG5_LSFT,         ENT_MO1,  BSPC_MO2, ESC_LCTL,
         ],
